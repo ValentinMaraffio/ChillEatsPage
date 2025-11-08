@@ -1,7 +1,28 @@
-import Link from "next/link"
+"use client"
 import Image from "next/image"
+import { useSmoothScroll } from "../hooks/use-smooth-scroll"
+import { useRouter, usePathname } from "next/navigation"
 
 export default function Footer() {
+  const { scrollToSection } = useSmoothScroll()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const handleLinkClick = (sectionId: string) => {
+    scrollToSection(sectionId)
+  }
+
+  const handleTerminosClick = () => {
+    if (pathname === "/terminos") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    } else {
+      router.push("/terminos")
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      }, 50)
+    }
+  }
+
   return (
     <footer className="bg-foreground text-background py-16 px-6">
       <div className="max-w-6xl mx-auto">
@@ -18,24 +39,52 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-4">Enlaces</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#problema" className="text-background/80 hover:text-background transition-colors">
+                <button
+                  onClick={() => handleLinkClick("problema")}
+                  className="text-background/80 hover:text-background transition-all font-medium hover:translate-x-1 block text-left"
+                >
                   Problema
-                </Link>
+                </button>
               </li>
               <li>
-                <Link href="#funcionalidades" className="text-background/80 hover:text-background transition-colors">
+                <button
+                  onClick={() => handleLinkClick("anecdota")}
+                  className="text-background/80 hover:text-background transition-all font-medium hover:translate-x-1 block text-left"
+                >
+                  Anécdota
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleLinkClick("funcionalidades")}
+                  className="text-background/80 hover:text-background transition-all font-medium hover:translate-x-1 block text-left"
+                >
                   Funcionalidades
-                </Link>
+                </button>
               </li>
               <li>
-                <Link href="#tecnologia" className="text-background/80 hover:text-background transition-colors">
+                <button
+                  onClick={() => handleLinkClick("tecnologia")}
+                  className="text-background/80 hover:text-background transition-all font-medium hover:translate-x-1 block text-left"
+                >
                   Tecnología
-                </Link>
+                </button>
               </li>
               <li>
-                <Link href="#equipo" className="text-background/80 hover:text-background transition-colors">
+                <button
+                  onClick={() => handleLinkClick("herramientas")}
+                  className="text-background/80 hover:text-background transition-all font-medium hover:translate-x-1 block text-left"
+                >
+                  Herramientas
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleLinkClick("equipo")}
+                  className="text-background/80 hover:text-background transition-all font-medium hover:translate-x-1 block text-left"
+                >
                   Equipo
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
@@ -44,14 +93,17 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/terminos" className="text-background/80 hover:text-background transition-colors">
+                <button
+                  onClick={handleTerminosClick}
+                  className="text-background/80 hover:text-background transition-colors block text-left font-medium"
+                >
                   Términos y Condiciones
-                </Link>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-background/80 hover:text-background transition-colors">
+                {/*}<a href="#" className="text-background/80 hover:text-background transition-colors">
                   Privacidad
-                </a>
+                </a>{*/}
               </li>
             </ul>
           </div>

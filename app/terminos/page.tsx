@@ -1,25 +1,51 @@
 "use client"
-
-import Link from "next/link"
+import Image from "next/image"
+import { useSmoothScroll } from "../../hooks/use-smooth-scroll"
+import { useRouter } from "next/navigation"
 
 export default function TerminosPage() {
+  const { scrollToSection } = useSmoothScroll()
+  const router = useRouter()
+
+  const handleBackToHome = () => {
+    router.push("/")
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }, 50)
+  }
+
+  // Logo click navigates to home with animation
+  const handleLogoClick = () => {
+    handleBackToHome()
+  }
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-primary shadow-lg">
         <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="text-3xl font-bold text-primary-foreground">🍽️</div>
+          <button onClick={handleLogoClick} className="flex items-center gap-2 group cursor-pointer">
+            <Image
+              src="/logo-cubiertos.png"
+              alt="ChillEats Logo"
+              width={40}
+              height={40}
+              className="group-hover:scale-110 transition-transform"
+            />
             <span className="text-2xl font-bold text-primary-foreground group-hover:scale-105 transition-transform">
               ChillEats
             </span>
-          </Link>
-          <Link
-            href="/"
+          </button>
+          <button
+            onClick={handleBackToHome}
             className="px-6 py-2 bg-secondary text-secondary-foreground rounded-lg hover:scale-105 transition-transform"
           >
             Volver
-          </Link>
+          </button>
         </nav>
       </header>
 
@@ -184,12 +210,12 @@ export default function TerminosPage() {
             <p className="text-primary-foreground text-lg font-semibold mb-6">
               Al usar ChillEats, aceptas estos Términos y Condiciones
             </p>
-            <Link
-              href="/"
+            <button
+              onClick={handleBackToHome}
               className="inline-block px-8 py-3 bg-primary-foreground text-primary font-bold rounded-lg hover:scale-105 transition-transform"
             >
               Volver a Inicio
-            </Link>
+            </button>
           </div>
         </div>
       </main>
@@ -198,6 +224,12 @@ export default function TerminosPage() {
       <footer className="bg-foreground text-background py-12 px-6 mt-16">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-background/80 mb-4">© 2025 ChillEats. Buscá tu lugar ideal. Comé relajado. Disfrutá.</p>
+          <button
+            onClick={handleScrollToTop}
+            className="inline-block mr-4 text-background/80 hover:text-primary transition-colors font-semibold mb-4"
+          >
+            ↑ Volver al inicio
+          </button>
           <a
             href="https://www.instagram.com/chilleatsapp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"

@@ -15,12 +15,24 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
-      <Problema />
-      <Anecdota />
-      <Funcionalidades />
-      <Tecnologia />
-      <Herramientas />
-      <Equipo />
+      <div id="problema">
+        <Problema />
+      </div>
+      <div id="anecdota">
+        <Anecdota />
+      </div>
+      <div id="funcionalidades">
+        <Funcionalidades />
+      </div>
+      <div id="tecnologia">
+        <Tecnologia />
+      </div>
+      <div id="herramientas">
+        <Herramientas />
+      </div>
+      <div id="equipo">
+        <Equipo />
+      </div>
       <Cierre />
       <Footer />
     </div>

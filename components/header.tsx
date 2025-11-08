@@ -3,26 +3,28 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import SectionsMenu from "./sections-menu"
+import { useRouter } from "next/navigation"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const router = useRouter()
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
-  const menuItems = [
-    { label: "Problema", href: "#problema" },
-    { label: "Anécdota", href: "#anecdota" },
-    { label: "Funcionalidades", href: "#funcionalidades" },
-    { label: "Tecnología", href: "#tecnologia" },
-    { label: "Herramientas", href: "#herramientas" },
-    { label: "Equipo", href: "#equipo" },
-  ]
+  const handleTerminosClick = () => {
+    router.push("/terminos")
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }, 50)
+  }
 
   return (
-    <header className="sticky top-0 z-50 bg-primary shadow-lg">
+    <header className="sticky top-0 z-40 bg-primary shadow-lg relative">
+      {" "}
+      {/* Added relative positioning */}
       <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <button onClick={scrollToTop} className="flex items-center gap-2 group cursor-pointer">
           <Image
@@ -51,34 +53,13 @@ export default function Header() {
           <Link href="#equipo" className="text-primary-foreground hover:text-secondary transition-colors">
             Equipo
           </Link>
-          <div className="relative">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="px-6 py-2 bg-secondary text-secondary-foreground rounded-lg hover:scale-105 transition-transform"
-            >
-              Conocé Más ▼
-            </button>
-            {isMenuOpen && (
-              <div className="absolute top-full mt-2 right-0 bg-secondary rounded-lg shadow-xl p-2 w-48">
-                {menuItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block px-4 py-3 text-secondary-foreground hover:bg-primary hover:text-secondary rounded transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <Link
-            href="/terminos"
+          <SectionsMenu />
+          <button
+            onClick={handleTerminosClick}
             className="px-6 py-2 bg-primary-foreground text-primary rounded-lg hover:scale-105 transition-transform"
           >
             Términos
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -88,7 +69,6 @@ export default function Header() {
           </svg>
         </button>
       </nav>
-
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-secondary p-4 space-y-4">
@@ -116,9 +96,15 @@ export default function Header() {
           <Link href="#equipo" className="block text-secondary-foreground hover:text-primary transition-colors">
             Equipo
           </Link>
-          <Link href="/terminos" className="block text-secondary-foreground hover:text-primary transition-colors">
+          <button
+            onClick={() => {
+              handleTerminosClick()
+              setIsOpen(false)
+            }}
+            className="block w-full text-left text-secondary-foreground hover:text-primary transition-colors"
+          >
             Términos y Condiciones
-          </Link>
+          </button>
         </div>
       )}
     </header>
