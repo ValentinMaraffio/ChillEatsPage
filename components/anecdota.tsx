@@ -26,7 +26,7 @@ export default function Anecdota() {
             </p>
             <p className="text-lg md:text-xl text-primary-foreground/90 leading-relaxed mb-6">
               ¡Gran alivio! McDonald's cuenta con menú para celíacos. Pero también fue una{" "}
-              <span className="font-bold text-white">gran preocupación</span>: Google Maps no lo mencionaba. Lo
+              <span className="font-bold text-white">gran preocupación</span>: Google Maps no lo mencionaba, y el lugar si tenía un menú especializado. Lo
               encontramos de pura casualidad.
             </p>
             <p className="text-2xl font-bold text-white">Esta es una experiencia real de muchos problemas diarios.</p>

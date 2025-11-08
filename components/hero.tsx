@@ -22,8 +22,7 @@ export default function Hero() {
             Buscá tu lugar ideal. Comé relajado. Disfrutá.
           </h1>
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12 max-w-3xl mx-auto text-balance">
-            Encuentra restaurantes especializados en celíacos, veganos y vegetarianos con filtros inteligentes y reseñas
-            precisas.
+            Encuentra tu lugar ideal usando ChillEats, con filtros inteligentes, búsquedas mejoradas y mucho más.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button

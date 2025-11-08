@@ -8,14 +8,14 @@ export default function Funcionalidades() {
       icon: "🔍",
       title: "Filtros Especializados",
       description:
-        "Filtra por celiaco, vegano, vegetariano y más. Combina filtros para encontrar exactamente lo que buscas.",
+        "Filtra por una restricción alimenticia. Combina filtros para encontrar exactamente lo que buscas.",
       delay: 0,
     },
     {
       icon: "🎯",
       title: "Búsqueda Mejorada",
       description:
-        "Búsquedas inteligentes basadas en información directa de establecimientos y menús, muy más precisas.",
+        "Búsquedas inteligentes basadas en información directa de establecimientos y menús, mucho más precisas.",
       delay: 100,
     },
     {
@@ -56,7 +56,7 @@ export default function Funcionalidades() {
 
         <ScrollReveal delay={100}>
           <p className="text-xl text-foreground/70 text-center mb-16 max-w-2xl mx-auto">
-            ChillEats mejora tus búsquedas con filtros especializados, reseñas precisas y muchas más características
+            ChillEats mejora tus búsquedas con filtros especializados, búsquedas precisas y muchas más características
           </p>
         </ScrollReveal>
 

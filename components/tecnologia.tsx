@@ -19,7 +19,7 @@ export default function Tecnologia() {
   const backend = [
     {
       name: "MongoDB",
-      desc: "Sistema de gestión de base de datos NoSQL para almacenar información de establecimientos.",
+      desc: "Sistema de gestión de base de datos NoSQL para almacenar información.",
       color: "from-yellow-50 to-amber-50",
     },
     {
@@ -46,7 +46,7 @@ export default function Tecnologia() {
                 Frontend
               </h3>
               <p className="text-white/90 text-lg mb-8 font-semibold">
-                La parte visual que ves e interactúas en tu dispositivo móvil.
+                La parte visual e interactiva en tu dispositivo móvil.
               </p>
               <div className="space-y-6">
                 {frontend.map((tech, i) => (

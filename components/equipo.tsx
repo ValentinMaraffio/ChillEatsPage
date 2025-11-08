@@ -51,7 +51,7 @@ export default function Equipo() {
 
         <ScrollReveal delay={500}>
           <div className="mt-16 bg-primary p-8 rounded-xl text-center">
-            <p className="text-primary-foreground text-lg">Juntos transformamos un problema en una solución</p>
+            <p className="text-primary-foreground text-lg">Juntos transformamos el problema en una solución</p>
           </div>
         </ScrollReveal>
       </div>

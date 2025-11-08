@@ -2,11 +2,14 @@
 import Image from "next/image"
 import { useSmoothScroll } from "../hooks/use-smooth-scroll"
 import { useRouter, usePathname } from "next/navigation"
+import { useState } from "react"
+import { ContactModal } from "./contact-modal"
 
 export default function Footer() {
   const { scrollToSection } = useSmoothScroll()
   const router = useRouter()
   const pathname = usePathname()
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 
   const handleLinkClick = (sectionId: string) => {
     scrollToSection(sectionId)
@@ -109,7 +112,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-bold mb-4">Síguenos</h4>
+            <h4 className="text-lg font-bold mb-4">Contáctanos</h4>
             <a
               href="https://www.instagram.com/chilleatsapp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               target="_blank"
@@ -121,6 +124,21 @@ export default function Footer() {
               </svg>
               Instagram
             </a>
+            <div className="mt-4">
+              <button
+                onClick={() => setIsContactModalOpen(true)}
+                className="inline-flex items-center gap-3 text-background/80 hover:text-primary hover:scale-110 transition-all text-lg font-semibold cursor-pointer"
+              >
+                <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <div className="text-left">
+                  <div>Email</div>
+                  <div className="text-sm text-background/60">chilleatsproject@gmail.com</div>
+                </div>
+              </button>
+            </div>
+            <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
           </div>
         </div>
 
