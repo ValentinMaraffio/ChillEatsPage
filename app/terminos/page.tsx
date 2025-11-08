@@ -42,7 +42,7 @@ export default function TerminosPage() {
           </button>
           <button
             onClick={handleBackToHome}
-            className="px-6 py-2 bg-secondary text-secondary-foreground rounded-lg hover:scale-105 transition-transform"
+            className="px-6 py-2 bg-secondary text-white rounded-lg hover:scale-105 transition-transform"
           >
             Volver
           </button>

@@ -1,9 +1,8 @@
 "use client"
 
-import Link from "next/link"
+import type React from "react"
 import Image from "next/image"
 import { useState } from "react"
-import SectionsMenu from "./sections-menu"
 import { useRouter } from "next/navigation"
 
 export default function Header() {
@@ -12,6 +11,15 @@ export default function Header() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault()
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" })
+      setIsOpen(false)
+    }
   }
 
   const handleTerminosClick = () => {
@@ -23,8 +31,6 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-primary shadow-lg relative">
-      {" "}
-      {/* Added relative positioning */}
       <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <button onClick={scrollToTop} className="flex items-center gap-2 group cursor-pointer">
           <Image
@@ -41,19 +47,48 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
-          <Link href="#problema" className="text-primary-foreground hover:text-secondary transition-colors">
+          <a
+            href="#problema"
+            onClick={(e) => handleSmoothScroll(e, "problema")}
+            className="text-primary-foreground hover:text-secondary transition-colors cursor-pointer"
+          >
             Problema
-          </Link>
-          <Link href="#funcionalidades" className="text-primary-foreground hover:text-secondary transition-colors">
+          </a>
+          <a
+            href="#anecdota"
+            onClick={(e) => handleSmoothScroll(e, "anecdota")}
+            className="text-primary-foreground hover:text-secondary transition-colors cursor-pointer"
+          >
+            Anécdota
+          </a>
+          <a
+            href="#funcionalidades"
+            onClick={(e) => handleSmoothScroll(e, "funcionalidades")}
+            className="text-primary-foreground hover:text-secondary transition-colors cursor-pointer"
+          >
             Funcionalidades
-          </Link>
-          <Link href="#tecnologia" className="text-primary-foreground hover:text-secondary transition-colors">
+          </a>
+          <a
+            href="#tecnologia"
+            onClick={(e) => handleSmoothScroll(e, "tecnologia")}
+            className="text-primary-foreground hover:text-secondary transition-colors cursor-pointer"
+          >
             Tecnología
-          </Link>
-          <Link href="#equipo" className="text-primary-foreground hover:text-secondary transition-colors">
+          </a>
+          <a
+            href="#herramientas"
+            onClick={(e) => handleSmoothScroll(e, "herramientas")}
+            className="text-primary-foreground hover:text-secondary transition-colors cursor-pointer"
+          >
+            Herramientas
+          </a>
+          <a
+            href="#equipo"
+            onClick={(e) => handleSmoothScroll(e, "equipo")}
+            className="text-primary-foreground hover:text-secondary transition-colors cursor-pointer"
+          >
             Equipo
-          </Link>
-          <SectionsMenu />
+          </a>
           <button
             onClick={handleTerminosClick}
             className="px-6 py-2 bg-primary-foreground text-primary rounded-lg hover:scale-105 transition-transform"
@@ -69,9 +104,12 @@ export default function Header() {
           </svg>
         </button>
       </nav>
+
+      {isOpen && <div className="fixed inset-0 bg-black/50 z-30 md:hidden" onClick={() => setIsOpen(false)} />}
+
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-secondary p-4 space-y-4">
+        <div className="md:hidden bg-secondary p-4 space-y-4 relative z-40">
           <button
             onClick={() => {
               scrollToTop()
@@ -81,21 +119,48 @@ export default function Header() {
           >
             ChillEats
           </button>
-          <Link href="#problema" className="block text-secondary-foreground hover:text-primary transition-colors">
+          <a
+            href="#problema"
+            onClick={(e) => handleSmoothScroll(e, "problema")}
+            className="block text-secondary-foreground hover:text-primary transition-colors cursor-pointer"
+          >
             Problema
-          </Link>
-          <Link
+          </a>
+          <a
+            href="#anecdota"
+            onClick={(e) => handleSmoothScroll(e, "anecdota")}
+            className="block text-secondary-foreground hover:text-primary transition-colors cursor-pointer"
+          >
+            Anécdota
+          </a>
+          <a
             href="#funcionalidades"
-            className="block text-secondary-foreground hover:text-primary transition-colors"
+            onClick={(e) => handleSmoothScroll(e, "funcionalidades")}
+            className="block text-secondary-foreground hover:text-primary transition-colors cursor-pointer"
           >
             Funcionalidades
-          </Link>
-          <Link href="#tecnologia" className="block text-secondary-foreground hover:text-primary transition-colors">
+          </a>
+          <a
+            href="#tecnologia"
+            onClick={(e) => handleSmoothScroll(e, "tecnologia")}
+            className="block text-secondary-foreground hover:text-primary transition-colors cursor-pointer"
+          >
             Tecnología
-          </Link>
-          <Link href="#equipo" className="block text-secondary-foreground hover:text-primary transition-colors">
+          </a>
+          <a
+            href="#herramientas"
+            onClick={(e) => handleSmoothScroll(e, "herramientas")}
+            className="block text-secondary-foreground hover:text-primary transition-colors cursor-pointer"
+          >
+            Herramientas
+          </a>
+          <a
+            href="#equipo"
+            onClick={(e) => handleSmoothScroll(e, "equipo")}
+            className="block text-secondary-foreground hover:text-primary transition-colors cursor-pointer"
+          >
             Equipo
-          </Link>
+          </a>
           <button
             onClick={() => {
               handleTerminosClick()
